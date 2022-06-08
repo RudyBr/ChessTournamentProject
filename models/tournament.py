@@ -16,3 +16,13 @@ class Tournament:
                               }
         self.controle_du_temps = controle_du_temps
         self.description = description
+
+    @classmethod
+    def entree_tournoi(cls):
+        return cls(
+                    input("Nom du tournoi: "),
+                    input("Lieu du tournoi: "),
+                    input("Date du tournoi: "),
+                    int(input("Nombre de rondes: ")),
+                    int(input("classement: ")),
+        )
