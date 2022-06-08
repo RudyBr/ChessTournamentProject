@@ -5,7 +5,14 @@ class Tournament:
         self.date = date
         self.nombre_de_tours = nombre_de_tours
         self.tournees = tournees
-        self.liste_joueurs = []
+        self.liste_joueurs = {"joueur01": None,
+                              "joueur02": None,
+                              "joueur03": None,
+                              "joueur04": None,
+                              "joueur05": None,
+                              "joueur06": None,
+                              "joueur07": None,
+                              "joueur08": None,
+                              }
         self.controle_du_temps = controle_du_temps
         self.description = description
-        
