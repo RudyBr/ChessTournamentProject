@@ -7,13 +7,13 @@ from models import tournament
 class View:
     """Chess tournament application view"""
 
-    def creation_tournoi(self):
+    def create_tournament(self):
         pass
 
 
 
 
-    def saisie_joueur(self):
+    def player_entry(self):
         return {
             "nom": input("Nom de famille: "),
             "prenom": input("Prénom: "),
@@ -21,3 +21,4 @@ class View:
             "sexe": input("Sexe: "),
             "classement": int(input("classement: ")),
         }
+        pass
