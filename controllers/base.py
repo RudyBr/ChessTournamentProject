@@ -31,6 +31,18 @@ class Controller:
                             player_details["classement"])
             self.players.append(player)
 
+    def get_tournament_details(self):
+        tournament_details = self.view.tournament_entry()
+        nombre_de_rondes = tournament_details["nombre de rondes"]
+        nombre_de_rondes = int(nombre_de_rondes) if nombre_de_rondes else 4
+        self.tournament = Tournament(tournament_details["nom"],
+                                     tournament_details["lieu"],
+                                     tournament_details["date"],
+                                     nombre_de_rondes,
+                                     tournament_details["controle de temps"],
+                                     tournament_details["description"])
+
     def run(self):
-        #self.get_players_details()
+        # self.get_players_details()
+        # self.get_tournament_details()
         pass
