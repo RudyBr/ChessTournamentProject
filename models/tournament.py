@@ -1,3 +1,8 @@
+from typing import List
+
+import models.data_test
+from player import Player
+
 class Tournament:
     def __init__(self, name, location, date, round_quantity, time_control, description):
         self.name = name
@@ -5,15 +10,7 @@ class Tournament:
         self.date = date
         self.round_quantity = round_quantity
         self.rounds = []
-        # peut etre liste mieux ? pur player_list-
-        self.player_list = {"joueur01": None,
-                            "joueur02": None,
-                            "joueur03": None,
-                            "joueur04": None,
-                            "joueur05": None,
-                            "joueur06": None,
-                            "joueur07": None,
-                            "joueur08": None,
-                            }
+        self.player_list: List[Player] = []
+        self.player_list = models.data_test.PLAYERS_DETAILS
         self.time_control = time_control
         self.description = description
