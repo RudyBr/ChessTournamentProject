@@ -5,7 +5,7 @@ class Tournament:
         self.date = date
         self.round_quantity = round_quantity
         self.rounds = []
-        # peut etre liste mieux ? pur player_list
+        # peut etre liste mieux ? pur player_list-
         self.player_list = {"joueur01": None,
                             "joueur02": None,
                             "joueur03": None,
