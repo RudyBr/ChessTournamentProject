@@ -7,6 +7,7 @@ class Player:
         self.birth_date = birth_date
         self.gender = gender
         self.ranking = ranking
+        self.score = 0
 
     def __str__(self):
         return f"Nom: {self.last_name} \n" \
