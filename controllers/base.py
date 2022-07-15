@@ -4,18 +4,14 @@ from typing import List
 
 from models.tournament import Tournament
 from models.player import Player
-import models.data_test
 
 
 class Controller:
     """Main controller."""
 
     def __init__(self, tournament: Tournament, view):
-        """Has a deck, a list of players and a view."""
+        """Has a tournament and a view."""
         # models
-        self.players: List[Player] = []
-        self.players = models.data_test.PLAYERS_DETAILS
-
         self.tournament = tournament
 
         # views
