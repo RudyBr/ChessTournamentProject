@@ -8,11 +8,9 @@ from views.base import View
 
 
 def main():
-    tournament = Tournament("nom_tournoi", "Paris", "05062022", 7, "Blitz", "Description_tournoi")
-
     view = View()
 
-    game = Controller(tournament, view)
+    game = Controller(view)
     game.run()
 
 

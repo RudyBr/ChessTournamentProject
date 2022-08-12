@@ -1,7 +1,7 @@
 from typing import List
 
-from match import Match
-from tournament import Tournament
+from .match import Match
+from .tournament import Tournament
 
 
 class Round:
@@ -18,7 +18,6 @@ class Round:
             if number == 1 else lambda player: player.score
 
         self.ordered_player_list = sorted(self.tournament.player_list,
-                                          key=key_sort_function)
+                                          key=lambda player: player.ranking)
         # il n'y a plus qu'à créer une liste de matchs avec toutes les paires
         # de joueurs de cette liste
-

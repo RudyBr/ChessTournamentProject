@@ -1,7 +1,7 @@
 from models import player
 from models import tournament
 
-from controllers import timestamp
+from controllers.timestamp import get_timestamp
 
 from datetime import datetime
 """ Base view """
@@ -25,7 +25,7 @@ class View:
             "sexe": input("Sexe: "),
             "classement": int(input("classement: ")),
         }
-        pass
+
 
     def tournament_entry(self):
         return{
@@ -37,7 +37,97 @@ class View:
                                        "Bullet (une minute par joueur)\n"
                                        "BLitz (10 minutes ou moins par joueur)\n"
                                        "Coup rapide (de 10 à 60 minutes par joueur)"),
-            "Description": input("Description du tournoi : ")
+            "description": input("Description du tournoi : ")
         }
 
     #def __str__(self):
+
+    def main_menu(self):
+        print(r""" 
+         _____ _                     _____                                                 _    
+        /  __ \ |                   |_   _|                                               | |   
+        | /  \/ |__   ___  ___ ___    | | ___  _   _ _ __ _ __   __ _ _ __ ___   ___ _ __ | |_  
+        | |   | '_ \ / _ \/ __/ __|   | |/ _ \| | | | '__| '_ \ / _` | '_ ` _ \ / _ \ '_ \| __| 
+        | \__/\ | | |  __/\__ \__ \   | | (_) | |_| | |  | | | | (_| | | | | | |  __/ | | | |_  
+         \____/_| |_|\___||___/___/   \_/\___/ \__,_|_|  |_| |_|\__,_|_| |_| |_|\___|_| |_|\__| 
+
+
+          ___      _           _       _     _             _                                    
+         / _ \    | |         (_)     (_)   | |           | |                                   
+        / /_\ \ __| |_ __ ___  _ _ __  _ ___| |_ _ __ __ _| |_ ___  _ __                        
+        |  _  |/ _` | '_ ` _ \| | '_ \| / __| __| '__/ _` | __/ _ \| '__|                       
+        | | | | (_| | | | | | | | | | | \__ \ |_| | | (_| | || (_) | |                          
+        \_| |_/\__,_|_| |_| |_|_|_| |_|_|___/\__|_|  \__,_|\__\___/|_|                          
+        """)
+        print("Choix 1  -->  Menu Joueurs")
+        print("Choix 2  -->  Menu Tournois")
+        print("Choix 3  -->  Menu des Rapports")
+        print("Choix 0  -->  Quitter le programme")
+        return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée."))
+
+
+    def player_menu(self):
+        print(r"\\\\\\\\\\\\\\\\  MENU JOUEURS  ////////////////")
+        print("Choix 1  -->  Liste des joueurs de la base de données")
+        print("Choix 2  -->  Ajouter un nouveau joueur à la base de données")
+        print("Choix 0  -->  Retour au menu principal")
+        return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée."))
+
+    def tournament_menu(self):
+        print(r"\\\\\\\\\\\\\\\\  MENU DU TOURNOI  ////////////////")
+        print("Choix 1  -->  Liste des joueurs participants au tournoi")
+        print("Choix 2  -->  Ajouter un nouveau tournoi")
+        print("Choix 0  -->  Retour au menu principal")
+        return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée."))
+
+    def new_tournament(self):
+        print(r"\\\\\\\\\\\\\\\\  CREATION D'UN NOUVEAU TOURNOI  ////////////////")
+        name = input("Nom du tournoi: ")
+        location = input("Lieu du tournoi: ")
+        date = input("Date du tournoi (au format jj/mm/aaaa) :")
+        round_quantity = int(input("Nombre de rondes (4 par défaut):"))
+        time_control = input("Choisisez le format de match: \n"
+                            "Format de partie du tournoi: \n"
+                            "Bullet (une minute par joueur)\n"
+                            "BLitz (10 minutes ou moins par joueur)\n"
+                            "Coup rapide (de 10 à 60 minutes par joueur)")
+        description = input("Description du tournoi")
+        return {"name":name, "location":location, "date":date, "round_quantity":round_quantity, "time_control":time_control, "description":description}
+
+    def new_player(self):
+        print(r"\\\\\\\\\\\\\\\\  CREATION D'UN NOUVEAU JOUEUR  ////////////////")
+        first_name = input("Prénom du joueur: ") # string
+        last_name = input("Nom de famille du joueur: ") # string
+        birthday_date = input("Date de naissance du joueur (au format jj/mm/aaaa) : ")
+        gender = input("Sexe du joueur (F ou M) : ")
+        ranking = int(input("Classement du joueur : "))
+        return {"first_name": first_name, "last_name": last_name, "birthday_date": birthday_date, "gender": gender,
+                "ranking": ranking}
+
+    def add_player_menu(self):
+        print(r"\\\\\\\\\\\\\\\\  CHOIX DE L'AJOUT DE JOUEUR  ////////////////")
+        print("Choix 1  -->  Créer un nouveau joueur et l'ajouter au tournoi")
+        print("Choix 2  -->  Ajouter un joueur de la base de données au tournoi")
+        print("Choix 3  -->  Continuer tournoi actuel")
+        return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée."))
+
+
+
+
+    def report_menu(self):
+        print(r"\\\\\\\\\\\\\\\\  MENU DES RAPPORTS  ////////////////")
+        print("Choix 1  -->  Affichage liste des joueurs")
+        print("Choix 2  -->  Affichage de tous les tournois")
+        print("Choix 0  -->  Retour au menu principal")
+
+
+
+
+
+
+
+
+
+
+
+
