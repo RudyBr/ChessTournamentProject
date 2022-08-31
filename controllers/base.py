@@ -1,5 +1,6 @@
 """Define the main controller."""
 
+import sys
 from typing import List
 
 import models.tournament
@@ -95,7 +96,8 @@ class Controller:
                 pass
             if option == 3:  # menu des rapports
                 self.view.report_module()
-
+            if option == 0:  # Quitte le programme
+                sys.exit("Vous avez quitter le programme")
 
 
 
