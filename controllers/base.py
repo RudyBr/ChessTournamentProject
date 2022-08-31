@@ -1,6 +1,5 @@
 """Define the main controller."""
 
-import sys
 from typing import List
 
 import models.tournament
@@ -8,6 +7,7 @@ from models.tournament import Tournament
 from models.player import Player
 from models.round import Round
 from views.base import View
+
 
 class Controller:
     """Main controller."""
@@ -22,7 +22,6 @@ class Controller:
         self.current_tournament = None
         # views
         self.view = view
-
 
     def player_module(self):
         while True:
@@ -52,7 +51,7 @@ class Controller:
                 self.current_tournament.player_list.append(player)
             elif option == 2:  # Ajouter un joueur de la base de données au tournoi
                 pass
-            elif option == 0:  1# Retour au menu principal
+            elif option == 0:  # Retour au menu principal
                 self.view.main_menu()
 
     def tournament_module(self):
@@ -93,22 +92,10 @@ class Controller:
             if option == 1:  # menu joueurs
                 self.player_module()
                 pass
-            if option == 2:  # menu tounois
+            elif option == 2:  # menu tounois
                 self.tournament_module()
                 pass
-            if option == 3:  # menu des rapports
+            elif option == 3:  # menu des rapports
                 self.view.report_module()
-            if option == 0:  # Quitte le programme avec message
-                sys.exit("Vous avez quitter le programme")
-
-
-
-        """self.tournament = Tournament("nom_tournoi", "Paris", "05062022", 7, "Blitz", "Description_tournoi")
-        print(self.tournament)
-        self.get_players_details()
-        for player in self.tournament.player_list:
-            print(player)
-        for no_ronde in range(self.tournament.round_quantity):
-            current_round = Round(self.tournament, no_ronde)
-            self.tournament.rounds.append(current_round)
-            print(current_round)"""
+            elif option == 0:  # Quitte le programme avec message
+                break
