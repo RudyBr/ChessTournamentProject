@@ -52,6 +52,8 @@ class Controller:
                 self.current_tournament.player_list.append(player)
             elif option == 2:  # Ajouter un joueur de la base de données au tournoi
                 pass
+            elif option == 0:  1# Retour au menu principal
+                self.view.main_menu()
 
     def tournament_module(self):
         while True:
@@ -96,7 +98,7 @@ class Controller:
                 pass
             if option == 3:  # menu des rapports
                 self.view.report_module()
-            if option == 0:  # Quitte le programme
+            if option == 0:  # Quitte le programme avec message
                 sys.exit("Vous avez quitter le programme")
 
 
