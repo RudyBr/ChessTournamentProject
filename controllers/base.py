@@ -37,21 +37,21 @@ class Controller:
                 print("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.")
 
     def add_player_module(self):
-        while True:
-            option = self.view.add_player_menu()
-            if option == 1:  # Créer un nouveau joueur et l'ajouter au tournoi
-                data = self.view.new_player()
-                player = models.player.Player(
-                    data["first_name"],
-                    data["last_name"],
-                    data["birthday_date"],
-                    data["gender"],
-                    data["ranking"]
-                )
-                self.current_tournament.player_list.append(player)
-            elif option == 2:  # Ajouter un joueur de la base de données au tournoi
-                pass
-            elif option == 0:  # Retour au menu principal
+        option = self.view.add_player_menu()
+        if option == 1:  # Créer un nouveau joueur et l'ajouter au tournoi
+            data = self.view.new_player()
+            player = models.player.Player(
+                data["first_name"],
+                data["last_name"],
+                data["birthday_date"],
+                data["gender"],
+                data["ranking"]
+            )
+            self.current_tournament.player_list.append(player)
+        elif option == 2:  # Ajouter un joueur de la base de données au tournoi
+
+            pass
+        elif option == 0:  # Retour au menu principal
                 self.view.main_menu()
 
     def tournament_module(self):
@@ -72,8 +72,12 @@ class Controller:
                 print(self.current_tournament)
                 # boucle : tant que nombre_de_joueur != 8 --> ajouter joueur
                 self.current_tournament.player_list = []
-                while len(self.current_tournament.player_list) < 8:
+                while len(self.current_tournament.player_list) < 2:
                     self.add_player_module()
+
+                # le tournoi peut démarrer
+                while self.current_tournament.round_count < self.current_tournament.round_quantity:
+                    self.current_tournament.add_round()
 
             elif option == 0:  # Retour au menu principal
                 self.view.main_menu()

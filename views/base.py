@@ -82,25 +82,25 @@ class View:
 
     def new_tournament(self):
         print(r"\\\\\\\\\\\\\\\\  CREATION D'UN NOUVEAU TOURNOI  ////////////////")
-        name = input("Nom du tournoi: ")
-        location = input("Lieu du tournoi: ")
-        date = input("Date du tournoi (au format jj/mm/aaaa) :")
-        round_quantity = int(input("Nombre de rondes (4 par défaut):"))
+        name = input("Nom du tournoi:   ")
+        location = input("Lieu du tournoi:   ")
+        date = input("Date du tournoi (au format jj/mm/aaaa) :   ")
+        round_quantity = int(input("Nombre de rondes (4 par défaut):   "))
         time_control = input("Choisisez le format de match: \n"
                             "Format de partie du tournoi: \n"
                             "Bullet (une minute par joueur)\n"
                             "BLitz (10 minutes ou moins par joueur)\n"
-                            "Coup rapide (de 10 à 60 minutes par joueur)")
-        description = input("Description du tournoi")
+                            "Coup rapide (de 10 à 60 minutes par joueur)  ")
+        description = input("Description du tournoi   ")
         return {"name":name, "location":location, "date":date, "round_quantity":round_quantity, "time_control":time_control, "description":description}
 
     def new_player(self):
         print(r"\\\\\\\\\\\\\\\\  CREATION D'UN NOUVEAU JOUEUR  ////////////////")
-        first_name = input("Prénom du joueur: ") # string
-        last_name = input("Nom de famille du joueur: ") # string
-        birthday_date = input("Date de naissance du joueur (au format jj/mm/aaaa) : ")
-        gender = input("Sexe du joueur (F ou M) : ")
-        ranking = int(input("Classement du joueur : "))
+        first_name = input("Prénom du joueur:   ") # string
+        last_name = input("Nom de famille du joueur:   ") # string
+        birthday_date = input("Date de naissance du joueur (au format jj/mm/aaaa) :   ")
+        gender = input("Sexe du joueur (F ou M) :   ")
+        ranking = int(input("Classement du joueur :   "))
         return {"first_name": first_name, "last_name": last_name, "birthday_date": birthday_date, "gender": gender,
                 "ranking": ranking}
 
@@ -108,17 +108,16 @@ class View:
         print(r"\\\\\\\\\\\\\\\\  CHOIX DE L'AJOUT DE JOUEUR  ////////////////")
         print("Choix 1  -->  Créer un nouveau joueur et l'ajouter au tournoi")
         print("Choix 2  -->  Ajouter un joueur de la base de données au tournoi")
-        print("Choix 3  -->  Continuer tournoi actuel")
-        return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée."))
 
-
-
+        return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "))
 
     def report_menu(self):
         print(r"\\\\\\\\\\\\\\\\  MENU DES RAPPORTS  ////////////////")
         print("Choix 1  -->  Affichage liste des joueurs")
         print("Choix 2  -->  Affichage de tous les tournois")
         print("Choix 0  -->  Retour au menu principal")
+
+
 
 
 
