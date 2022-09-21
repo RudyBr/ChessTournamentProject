@@ -15,3 +15,7 @@ class Player:
                f"Date de naissance: {self.birth_date} \n" \
                f"Sexe: {self.gender} \n" \
                f"Classement Elo: {self.ranking}"
+
+
+    def __repr__(self):
+        return f"{self.first_name} {self.last_name} [{self.ranking}]"

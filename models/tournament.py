@@ -20,7 +20,7 @@ class Tournament:
         # création de la prochaine ronde
         self.round_count += 1
         print(f"création de la ronde n°{self.round_count}")
-        round = Round(self, self.round_count)
+        current_round = Round(self, self.round_count)
         self.rounds.append(round)
         print(f"démarrage de la ronde n°{self.round_count}")
-        # ...
+        current_round.run()

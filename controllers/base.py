@@ -52,7 +52,7 @@ class Controller:
 
             pass
         elif option == 0:  # Retour au menu principal
-                self.view.main_menu()
+            return
 
     def tournament_module(self):
         while True:
@@ -71,6 +71,7 @@ class Controller:
                 )
                 print(self.current_tournament)
                 # boucle : tant que nombre_de_joueur != 8 --> ajouter joueur
+
                 self.current_tournament.player_list = []
                 while len(self.current_tournament.player_list) < 2:
                     self.add_player_module()
@@ -80,14 +81,13 @@ class Controller:
                     self.current_tournament.add_round()
 
             elif option == 0:  # Retour au menu principal
-                self.view.main_menu()
+                break
             else:
                 print("Ce n'est pas un choix valide.")
                 print("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.")
 
     def report_module(self):
         option = self.view.report_menu()
-
 
     def run(self):
         # self.get_tournament_details()
