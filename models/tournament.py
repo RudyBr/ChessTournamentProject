@@ -12,6 +12,7 @@ class Tournament:
         self.round_quantity = round_quantity
         self.rounds = []
         self.round_count = 0
+        self.current_round = None
         self.player_list: List[Player] = []
         self.time_control = time_control
         self.description = description
@@ -20,7 +21,7 @@ class Tournament:
         # création de la prochaine ronde
         self.round_count += 1
         print(f"création de la ronde n°{self.round_count}")
-        current_round = Round(self, self.round_count)
+        self.current_round = Round(self, self.round_count)
         self.rounds.append(round)
         print(f"démarrage de la ronde n°{self.round_count}")
-        current_round.run()
+        self.current_round.set_matches()

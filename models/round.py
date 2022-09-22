@@ -1,6 +1,7 @@
 from typing import List
 
 from .match import Match
+import controllers.base
 
 
 class Round:
@@ -27,15 +28,22 @@ class Round:
         return ordered_player_list
 
     def players_pair(self, ordered_player_list):
-        return
-        while ordered_player_list:
-            # on apparie le premier élément de la liiste avec le premier suivant
-            # qu'il n'a pas déjà rencontré
-            paire = (1, 2)
-            # match = Match(1, 2)
-            # match.jouer()
+        if self.number == 1:
+            half_players_number = int(len(ordered_player_list) / 2)
+            list1 = ordered_player_list[:half_players_number]
+            list2 = ordered_player_list[half_players_number:]
+            for no_player in range(len(list1)):
+                match = Match(list1[no_player], list2[no_player])
+                self.match_list.append(match)
+        else:
+            while ordered_player_list:  # Tant que ordered_player_list n'est pas une liste vide
+                # on apparie le premier élément de la liste avec le premier suivant
+                # qu'il n'a pas déjà rencontré
+                paire = (1, 2)
+                # match = Match(1, 2)
+                # match.jouer()
 
-    def run(self):
+    def set_matches(self):
         ordered_player_list = self.rank_players()
         self.players_pair(ordered_player_list)
     # il n'y a plus qu'à créer une liste de matchs avec toutes les paires

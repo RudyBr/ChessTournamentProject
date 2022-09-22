@@ -1,12 +1,5 @@
 """Define the main controller."""
-
-from typing import List
-
 import models.tournament
-from models.tournament import Tournament
-from models.player import Player
-from models.round import Round
-from views.base import View
 
 
 class Controller:
@@ -79,12 +72,19 @@ class Controller:
                 # le tournoi peut démarrer
                 while self.current_tournament.round_count < self.current_tournament.round_quantity:
                     self.current_tournament.add_round()
+                    for match in self.current_tournament.current_round.match_list:
+                        # demander le résultat du match
+                        self.match_module()
 
             elif option == 0:  # Retour au menu principal
                 break
             else:
                 print("Ce n'est pas un choix valide.")
                 print("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.")
+
+    def match_module(self):
+        # va faire appel à self.view.match_menu
+        pass
 
     def report_module(self):
         option = self.view.report_menu()

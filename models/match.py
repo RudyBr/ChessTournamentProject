@@ -3,3 +3,4 @@ class Match:
         self.joueur1 = joueur1
         self.joueur2 = joueur2
         # manque résultat
+
