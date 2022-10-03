@@ -41,6 +41,7 @@ class Controller:
                 data["ranking"]
             )
             self.current_tournament.player_list.append(player)
+            self.current_tournament.matches_history[player] = []
         elif option == 2:  # Ajouter un joueur de la base de données au tournoi
 
             pass
@@ -63,10 +64,9 @@ class Controller:
                     data["description"]
                 )
                 print(self.current_tournament)
-                # boucle : tant que nombre_de_joueur != 8 --> ajouter joueur
 
                 self.current_tournament.player_list = []
-                while len(self.current_tournament.player_list) < 2:
+                while len(self.current_tournament.player_list) < 8:
                     self.add_player_module()
 
                 # le tournoi peut démarrer
@@ -83,7 +83,10 @@ class Controller:
                 print("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.")
 
     def match_module(self):
+
         # va faire appel à self.view.match_menu
+
+
         pass
 
     def report_module(self):

@@ -16,6 +16,7 @@ class Tournament:
         self.player_list: List[Player] = []
         self.time_control = time_control
         self.description = description
+        self.matches_history = {}
 
     def add_round(self):
         # création de la prochaine ronde

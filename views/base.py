@@ -117,7 +117,10 @@ class View:
         print("Choix 2  -->  Affichage de tous les tournois")
         print("Choix 0  -->  Retour au menu principal")
 
+    def match_menu(self):
+        print(r"\\\\\\\\\\\\\\\\  MENU DES RAPPORTS  ////////////////")
 
+        pass
 
 
 

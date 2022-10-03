@@ -1,7 +1,6 @@
 from typing import List
 
 from .match import Match
-import controllers.base
 
 
 class Round:
@@ -38,8 +37,19 @@ class Round:
         else:
             while ordered_player_list:  # Tant que ordered_player_list n'est pas une liste vide
                 # on apparie le premier élément de la liste avec le premier suivant
+                i = 1
+                while i < len(self.tournament.player_list):
+                    if ordered_player_list[i] not in self.tournament.matches_history[ordered_player_list[0]]:
+                        match = Match(ordered_player_list[0], ordered_player_list[i])
+                        print(ordered_player_list)
+                        ordered_player_list.remove(ordered_player_list[0])
+                        ordered_player_list.remove(ordered_player_list[i])
+                        self.match_list.append(match)
+                        self.tournament.matches_history[match.joueur1].append(match.joueur2)
+                        self.tournament.matches_history[match.joueur2].append(match.joueur1)
+
                 # qu'il n'a pas déjà rencontré
-                paire = (1, 2)
+
                 # match = Match(1, 2)
                 # match.jouer()
 
