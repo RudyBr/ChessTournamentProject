@@ -43,7 +43,6 @@ class View:
     #def __str__(self):
 
     def main_menu(self):
-        print("\n")
         print(r""" 
          _____ _                     _____                                                 _    
         /  __ \ |                   |_   _|                                               | |   
@@ -68,7 +67,6 @@ class View:
 
 
     def player_menu(self):
-        print("\n")
         print(r"\\\\\\\\\\\\\\\\  MENU JOUEURS  ////////////////")
         print("Choix 1  -->  Liste des joueurs de la base de données")
         print("Choix 2  -->  Ajouter un nouveau joueur à la base de données")
@@ -76,7 +74,6 @@ class View:
         return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée."))
 
     def tournament_menu(self):
-        print("\n")
         print(r"\\\\\\\\\\\\\\\\  MENU DU TOURNOI  ////////////////")
         print("Choix 1  -->  Liste des joueurs participants au tournoi")
         print("Choix 2  -->  Ajouter un nouveau tournoi")
@@ -84,7 +81,6 @@ class View:
         return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée."))
 
     def new_tournament(self):
-        print("\n")
         print(r"\\\\\\\\\\\\\\\\  CREATION D'UN NOUVEAU TOURNOI  ////////////////")
         name = input("Nom du tournoi:   ")
         location = input("Lieu du tournoi:   ")
@@ -99,7 +95,6 @@ class View:
         return {"name":name, "location":location, "date":date, "round_quantity":round_quantity, "time_control":time_control, "description":description}
 
     def new_player(self):
-        print("\n")
         print(r"\\\\\\\\\\\\\\\\  CREATION D'UN NOUVEAU JOUEUR  ////////////////")
         first_name = input("Prénom du joueur:   ") # string
         last_name = input("Nom de famille du joueur:   ") # string
@@ -110,7 +105,6 @@ class View:
                 "ranking": ranking}
 
     def add_player_menu(self):
-        print("\n")
         print(r"\\\\\\\\\\\\\\\\  CHOIX DE L'AJOUT DE JOUEUR  ////////////////")
         print("Choix 1  -->  Créer un nouveau joueur et l'ajouter au tournoi")
         print("Choix 2  -->  Ajouter un joueur de la base de données au tournoi")
@@ -118,7 +112,6 @@ class View:
         return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "))
 
     def report_menu(self):
-        print("\n")
         print(r"\\\\\\\\\\\\\\\\  MENU DES RAPPORTS  ////////////////")
         print("Choix 1  -->  Affichage liste des joueurs")
         print("Choix 2  -->  Affichage de tous les tournois")
