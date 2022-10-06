@@ -1,5 +1,6 @@
 """Define the main controller."""
 import models.tournament
+import models.player
 
 
 class Controller:
@@ -85,7 +86,6 @@ class Controller:
     def match_module(self):
 
         # va faire appel à self.view.match_menu
-
 
         pass
 
