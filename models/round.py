@@ -40,8 +40,9 @@ class Round:
             while ordered_player_list:  # Tant que ordered_player_list n'est pas une liste vide
                 # on apparie le premier élément de la liste avec le premier suivant
                 i = 1
-                while i < len(self.tournament.player_list):
-                    if ordered_player_list[i] not in self.tournament.matches_history[ordered_player_list[0]]:
+                while i < len(ordered_player_list):
+                    if len(ordered_player_list) == 2 or \
+                        ordered_player_list[i] not in self.tournament.matches_history[ordered_player_list[0]]:
                         match = Match(ordered_player_list[0], ordered_player_list[i])
                         print(ordered_player_list)
                         player_0 = ordered_player_list[0]

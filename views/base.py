@@ -123,11 +123,11 @@ class View:
         print("Choix 2  -->  Affichage de tous les tournois")
         print("Choix 0  -->  Retour au menu principal")
 
-    def match_menu(self):
+    def match_menu(self, joueur1_civility, joueur2_civility):
         print("\n")
         print(r"\\\\\\\\\\\\\\\\  RESULTAT DU MATCH  ////////////////")
-        print(f"Veuillez indiquer le résultat du match:  {match.joueur1}  VS {match.joueur2}")
-        print(f"Choix 1  -->  Le joueur {match.joueur1} est vainqueur")
-        print(f"Choix 2  -->  Le joueur {match.joueur2} est vainqueur")
+        print(f"Veuillez indiquer le résultat du match:  {joueur1_civility}  VS {joueur2_civility}")
+        print(f"Choix 1  -->  Le joueur {joueur1_civility} est vainqueur")
+        print(f"Choix 2  -->  Le joueur {joueur2_civility} est vainqueur")
         print("Choix 3  -->  C'est un match nul")
         return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "))

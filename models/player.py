@@ -18,4 +18,7 @@ class Player:
 
 
     def __repr__(self):
-        return f"{self.first_name} {self.last_name} [{self.ranking}]"
+        return f"{self.first_name} {self.last_name} ranking: [{self.ranking}]  score: [{self.score}]"
+
+    def civility(self):
+        return f"{self.first_name} {self.last_name}"

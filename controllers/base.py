@@ -1,6 +1,8 @@
 """Define the main controller."""
 import models.tournament
 import models.player
+import models.round
+import models.match
 
 
 class Controller:
@@ -75,7 +77,7 @@ class Controller:
                     self.current_tournament.add_round()
                     for match in self.current_tournament.current_round.match_list:
                         # demander le résultat du match
-                        self.match_module()
+                        self.match_module(match)
 
             elif option == 0:  # Retour au menu principal
                 break
@@ -83,11 +85,29 @@ class Controller:
                 print("Ce n'est pas un choix valide.")
                 print("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.")
 
-    def match_module(self):
+    def match_module(self, match):
+        entree_valide = False
+        option = None
+        while not entree_valide:
+            option = self.view.match_menu(match.joueur1.civility(), match.joueur2.civility())
+            if option == 1:  # Le joueur 1 est vainqueur
+                entree_valide = True
+                match.joueur1.score += 1
+            elif option == 2:  # Le joueur 2 est vainqueur
+                entree_valide = True
+                match.joueur2.score += 1
+            elif option == 3:  # Match nul
+                entree_valide = True
+                match.joueur1.score += 0.5
+                match.joueur2.score += 0.5
+            else:
+                print("Ce n'est pas un choix valide.")
+                print("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.")
+        print(f"Résultat du match : {option}")
+        return option
 
-        # va faire appel à self.view.match_menu
 
-        pass
+
 
     def report_module(self):
         option = self.view.report_menu()
