@@ -64,7 +64,7 @@ class View:
         print("Choix 2  -->  Menu Tournois")
         print("Choix 3  -->  Menu des Rapports")
         print("Choix 0  -->  Quitter le programme")
-        return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée."))
+        return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "))
 
 
     def player_menu(self):
@@ -73,7 +73,7 @@ class View:
         print("Choix 1  -->  Liste des joueurs de la base de données")
         print("Choix 2  -->  Ajouter un nouveau joueur à la base de données")
         print("Choix 0  -->  Retour au menu principal")
-        return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée."))
+        return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "))
 
     def tournament_menu(self):
         print("\n")
@@ -81,7 +81,7 @@ class View:
         print("Choix 1  -->  Liste des joueurs participants au tournoi")
         print("Choix 2  -->  Ajouter un nouveau tournoi")
         print("Choix 0  -->  Retour au menu principal")
-        return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée."))
+        return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "))
 
     def new_tournament(self):
         print("\n")
@@ -114,7 +114,6 @@ class View:
         print(r"\\\\\\\\\\\\\\\\  CHOIX DE L'AJOUT DE JOUEUR  ////////////////")
         print("Choix 1  -->  Créer un nouveau joueur et l'ajouter au tournoi")
         print("Choix 2  -->  Ajouter un joueur de la base de données au tournoi")
-
         return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "))
 
     def report_menu(self):
@@ -126,18 +125,9 @@ class View:
 
     def match_menu(self):
         print("\n")
-        print(r"\\\\\\\\\\\\\\\\  MENU DES RAPPORTS  ////////////////")
-
-        pass
-
-
-
-
-
-
-
-
-
-
-
-
+        print(r"\\\\\\\\\\\\\\\\  RESULTAT DU MATCH  ////////////////")
+        print(f"Veuillez indiquer le résultat du match:  {match.joueur1}  VS {match.joueur2}")
+        print(f"Choix 1  -->  Le joueur {match.joueur1} est vainqueur")
+        print(f"Choix 2  -->  Le joueur {match.joueur2} est vainqueur")
+        print("Choix 3  -->  C'est un match nul")
+        return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "))
