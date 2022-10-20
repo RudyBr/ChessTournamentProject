@@ -122,6 +122,20 @@ class View:
         print("Choix 1  -->  Affichage liste des joueurs")
         print("Choix 2  -->  Affichage de tous les tournois")
         print("Choix 0  -->  Retour au menu principal")
+        return int(input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "))
+
+    def player_listing_menu(self):
+        print("\n")
+        print(r"\\\\\\\\\\\\\\\\  AFFICHAGE DES JOUEURSDE LA BASE DE DONNEES  ////////////////")
+        print("Choix 1  -->  Lister les joueurs par ordre alphabétique")
+        print("Choix 2  -->  Lister les joueurs par classement elo")
+        print("Choix 0  -->  Retour au menu principal")
+
+    def tournament_listing_menu(self):
+        print("\n")
+        print(r"\\\\\\\\\\\\\\\\  AFFICHAGE DES TOURNOIS  ////////////////")
+        print() # affichage de tous les tournois de la base de données avec un indice/une clé à sélectionner
+
 
     def match_menu(self, joueur1_civility, joueur2_civility):
         print("\n")

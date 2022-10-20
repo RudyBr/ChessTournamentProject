@@ -106,11 +106,29 @@ class Controller:
         print(f"Résultat du match : {option}")
         return option
 
-
-
-
     def report_module(self):
         option = self.view.report_menu()
+        while True:
+            if option == 1:
+                pass
+            elif option == 2:
+                pass
+            elif option == 3:
+                pass
+            elif option == 0:  # Quitte le programme avec message
+                break
+
+    def player_listing_module(self):
+        option = self.view.player_listing_menu()
+        while True:
+            if option == 1:
+                pass
+            elif option == 2:
+                pass
+            elif option == 3:
+                pass
+            elif option == 0:  # Quitte le programme avec message
+                break
 
     def run(self):
         # self.get_tournament_details()

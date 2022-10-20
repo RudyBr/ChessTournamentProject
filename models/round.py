@@ -42,7 +42,7 @@ class Round:
                 i = 1
                 while i < len(ordered_player_list):
                     if len(ordered_player_list) == 2 or \
-                        ordered_player_list[i] not in self.tournament.matches_history[ordered_player_list[0]]:
+                            ordered_player_list[i] not in self.tournament.matches_history[ordered_player_list[0]]:
                         match = Match(ordered_player_list[0], ordered_player_list[i])
                         print(ordered_player_list)
                         player_0 = ordered_player_list[0]
