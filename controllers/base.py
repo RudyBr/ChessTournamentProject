@@ -1,4 +1,6 @@
 """Define the main controller."""
+import pprint
+
 import models.tournament
 import models.player
 import models.round
@@ -78,6 +80,10 @@ class Controller:
                     for match in self.current_tournament.current_round.match_list:
                         # demander le résultat du match
                         self.match_module(match)
+
+                """final_ranking = 
+                print(f"Le classement final du tournoi est:")
+                pprint()"""
 
             elif option == 0:  # Retour au menu principal
                 break

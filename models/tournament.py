@@ -26,3 +26,16 @@ class Tournament:
         self.rounds.append(round)
         print(f"démarrage de la ronde n°{self.round_count}")
         self.current_round.set_matches()
+
+    def get_ordered_player_list(self):
+        # key_sort_function = lambda player: player.ranking \
+        #     if number == 1 else lambda player: player.score
+        if self.round_count == 1:
+            ordered_player_list = sorted(self.player_list, key=lambda player: player.ranking, reverse=True)
+        else:
+            # classement pour round 2+ avec comme 1er élément de tri le score et 2eme l'élo
+            ordered_player_list = sorted(self.player_list,
+                                         key=lambda player: (player.score, player.ranking), reverse=True)
+        print(f"Liste des joueurs classés de la ronde : {ordered_player_list}")
+        return ordered_player_list
+

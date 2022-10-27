@@ -1,6 +1,9 @@
 from typing import List
 
+# from .tournament import Tournament
+
 from .match import Match
+
 
 
 class Round:
@@ -14,7 +17,7 @@ class Round:
         self.number = number
         self.match_list: List[Match] = []
 
-    def rank_players(self):
+    """def rank_players(self):
         # key_sort_function = lambda player: player.ranking \
         #     if number == 1 else lambda player: player.score
         if self.number == 1:
@@ -24,7 +27,7 @@ class Round:
             ordered_player_list = sorted(self.tournament.player_list,
                                          key=lambda player: (player.score, player.ranking), reverse=True)
         print(f"Liste des joueurs classés de la ronde : {ordered_player_list}")
-        return ordered_player_list
+        return ordered_player_list"""
 
     def players_pair(self, ordered_player_list):
         if self.number == 1:
@@ -61,7 +64,7 @@ class Round:
                 # match.jouer()
 
     def set_matches(self):
-        ordered_player_list = self.rank_players()
+        ordered_player_list = self.tournament.get_ordered_player_list()
         self.players_pair(ordered_player_list)
     # il n'y a plus qu'à créer une liste de matchs avec toutes les paires
     # de joueurs de cette liste
