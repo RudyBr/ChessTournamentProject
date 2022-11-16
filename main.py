@@ -1,4 +1,5 @@
 """Entry point."""
+from tinydb import TinyDB, Query
 
 from models.tournament import Tournament
 

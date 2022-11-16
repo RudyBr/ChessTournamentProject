@@ -23,7 +23,7 @@ class Tournament:
         self.round_count += 1
         print(f"création de la ronde n°{self.round_count}")
         self.current_round = Round(self, self.round_count)
-        self.rounds.append(round)
+        self.rounds.append(self.current_round)
         print(f"démarrage de la ronde n°{self.round_count}")
         self.current_round.set_matches()
 
@@ -39,3 +39,4 @@ class Tournament:
         print(f"Liste des joueurs classés de la ronde : {ordered_player_list}")
         return ordered_player_list
 
+# [player.id for player in self.player_list

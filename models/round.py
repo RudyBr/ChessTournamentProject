@@ -5,7 +5,6 @@ from typing import List
 from .match import Match
 
 
-
 class Round:
     def __init__(self, tournament, number):
         """

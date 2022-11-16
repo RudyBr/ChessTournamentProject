@@ -1,5 +1,7 @@
 """Define the main controller."""
-import pprint
+
+from tinydb import TinyDB, Query
+from pprint import pprint
 
 import models.tournament
 import models.player
@@ -45,6 +47,22 @@ class Controller:
                 data["gender"],
                 data["ranking"]
             )
+
+            db = TinyDB('db.json', indent=4)
+            players_table = db.table("players")
+
+            pprint(players_table.all())
+            player_query = Query()
+            pprint(players_table.search(player_query.id == 1))
+
+            player_voulu = players_table.get(doc_id=1)
+            pprint(player_voulu)
+
+            player_id = players_table.insert(player.serialized_player())
+            player.id = player_id
+
+            player.score = 2
+            players_table.update(player.serialized_player(), doc_ids=[player_id])
             self.current_tournament.player_list.append(player)
             self.current_tournament.matches_history[player] = []
         elif option == 2:  # Ajouter un joueur de la base de données au tournoi
@@ -81,6 +99,12 @@ class Controller:
                         # demander le résultat du match
                         self.match_module(match)
 
+                ordered_player_list = self.current_tournament.get_ordered_player_list()
+                pprint(ordered_player_list)
+                view_play_list = [{"civility": player.first_name + ' ' + player.last_name,
+                                   "score": player.score}
+                                  for player in ordered_player_list]
+                pprint(view_play_list)
                 """final_ranking = 
                 print(f"Le classement final du tournoi est:")
                 pprint()"""
