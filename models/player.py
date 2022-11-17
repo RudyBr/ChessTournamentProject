@@ -31,7 +31,7 @@ class Player:
     def civility(self):
         return f"{self.first_name} {self.last_name}"
 
-    def serialized_player(self):
+    def serialize(self):
         return {"id": self.id if self.id is not None else 0,
                 "first_name": self.first_name,
                 "last_name": self.last_name,

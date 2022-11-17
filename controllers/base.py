@@ -58,11 +58,11 @@ class Controller:
             player_voulu = players_table.get(doc_id=1)
             pprint(player_voulu)
 
-            player_id = players_table.insert(player.serialized_player())
+            player_id = players_table.insert(player.serialize())
             player.id = player_id
 
             player.score = 2
-            players_table.update(player.serialized_player(), doc_ids=[player_id])
+            players_table.update(player.serialize(), doc_ids=[player_id])
             self.current_tournament.player_list.append(player)
             self.current_tournament.matches_history[player] = []
         elif option == 2:  # Ajouter un joueur de la base de données au tournoi

@@ -39,7 +39,7 @@ class Tournament:
         print(f"Liste des joueurs classés de la ronde : {ordered_player_list}")
         return ordered_player_list
 
-    def serialized_tournament(self):
+    def serialize(self):
         return{"name": self.name,
                "location": self.location,
                "date": self.date,
