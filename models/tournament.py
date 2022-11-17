@@ -6,6 +6,7 @@ from .round import Round
 
 class Tournament:
     def __init__(self, name, location, date, round_quantity, time_control, description):
+        self.id = None
         self.name = name
         self.location = location
         self.date = date
@@ -40,7 +41,8 @@ class Tournament:
         return ordered_player_list
 
     def serialize(self):
-        return{"name": self.name,
+        return{"id": self.id if self.id is not None else 0,
+               "name": self.name,
                "location": self.location,
                "date": self.date,
                "round_quantity": self.round_quantity,
