@@ -86,6 +86,20 @@ class Controller:
                     data["time_control"],
                     data["description"]
                 )
+
+                db = TinyDB('db.json', indent=4)
+                tournament_table = db.table("tournament")
+
+                pprint(tournament_table.all())
+                tournament_query = Query()
+                pprint(tournament_table.search(tournament_query.id == 1))
+
+                tournament_voulu = tournament_table.get(doc_id=1)
+                pprint(tournament_voulu)
+
+                tournament_id = tournament_table.insert(self.current_tournament.serialize())
+                self.current_tournament.id = tournament_id
+
                 print(self.current_tournament)
 
                 self.current_tournament.player_list = []

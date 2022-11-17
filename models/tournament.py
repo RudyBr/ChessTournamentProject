@@ -46,8 +46,7 @@ class Tournament:
                "location": self.location,
                "date": self.date,
                "round_quantity": self.round_quantity,
-               "player_list": self.player_list,
+               "player_list": [player.id for player in self.player_list],
                "description": self.description,
-               "matches_history": self.matches_history
-        }
-# [player.id for player in self.player_list
+               "matches_history": {}
+               }
