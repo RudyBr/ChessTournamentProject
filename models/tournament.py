@@ -44,7 +44,7 @@ class Tournament:
         return{"id": self.id if self.id is not None else 0,
                "name": self.name,
                "location": self.location,
-               "date": self.date,
+               "date": self.date.strftime("%d/%m/%Y"),
                "round_quantity": self.round_quantity,
                "player_list": [player.id for player in self.player_list],
                "description": self.description,

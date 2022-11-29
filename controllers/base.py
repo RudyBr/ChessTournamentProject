@@ -112,6 +112,7 @@ class Controller:
                     for match in self.current_tournament.current_round.match_list:
                         # demander le résultat du match
                         self.match_module(match)
+                    # la ronde est terminée >  renseigner date de fin de la ronde
 
                 ordered_player_list = self.current_tournament.get_ordered_player_list()
                 pprint(ordered_player_list)

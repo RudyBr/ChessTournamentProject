@@ -14,8 +14,16 @@ class View:
     def create_tournament(self):
         pass
 
-
-
+    @staticmethod
+    def menu_choice_error(message, option_min, option_max):
+        choice_is_invalid = True
+        while choice_is_invalid:
+            choice = input(message)
+            if choice.isdigit() and (option_min <= (num_choice := int(choice)) <= option_max):
+                choice_is_invalid = False
+            else:
+                print("Veuillez choisir une option valide.")
+        return num_choice
 
     def player_entry(self):
         return {
@@ -60,17 +68,13 @@ class View:
         | | | | (_| | | | | | | | | | | \__ \ |_| | | (_| | || (_) | |                          
         \_| |_/\__,_|_| |_| |_|_|_| |_|_|___/\__|_|  \__,_|\__\___/|_|                          
         """)
-        while True:
-            print("Choix 1  -->  Menu Joueurs")
-            print("Choix 2  -->  Menu Tournois")
-            print("Choix 3  -->  Menu des Rapports")
-            print("Choix 0  -->  Quitter le programme")
-            choice = input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   ")
-            if not choice.isdigit() or int(choice) < 0 or int(choice) > 3:
-                print("Veuillez choisir une option valide.")
-                continue
-            else:
-                return int(choice)
+
+        print("Choix 1  -->  Menu Joueurs")
+        print("Choix 2  -->  Menu Tournois")
+        print("Choix 3  -->  Menu des Rapports")
+        print("Choix 0  -->  Quitter le programme")
+        message = "Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "
+        return View.menu_choice_error(message, 0, 3)
 
 
     def player_menu(self):
@@ -106,12 +110,22 @@ class View:
         print(r"\\\\\\\\\\\\\\\\  CREATION D'UN NOUVEAU TOURNOI  ////////////////")
         name = input("Nom du tournoi:   ")
         location = input("Lieu du tournoi:   ")
-        date = input("Date du tournoi (au format jj/mm/aaaa) :   ")
+        date_is_invalid = True
+        while date_is_invalid:
+            date_str = input("Date du tournoi (au format jj/mm/aaaa) :   ")
+            try:
+                date = datetime.strptime(date_str, "%d/%m/%Y")
+                if date < datetime.now():
+                    print("Vous avez entré une date dans le passé, ce qui est impossible")
+                else:
+                    date_is_invalid = False
+            except ValueError:
+                print("Format de date invalide")
         round_quantity = int(input("Nombre de rondes (4 par défaut):   "))
         time_control = input("Choisisez le format de match: \n"
                             "Format de partie du tournoi: \n"
                             "Bullet (une minute par joueur)\n"
-                            "BLitz (10 minutes ou moins par joueur)\n"
+                            "Blitz (10 minutes ou moins par joueur)\n"
                             "Coup rapide (de 10 à 60 minutes par joueur)  ")
         description = input("Description du tournoi   ")
         return {"name":name,
