@@ -15,26 +15,23 @@ class View:
         pass
 
     @staticmethod
-    def menu_choice_error(message, option_min, option_max):
-        choice_is_invalid = True
-        while choice_is_invalid:
-            choice = input(message)
-            if choice.isdigit() and (option_min <= (num_choice := int(choice)) <= option_max):
-                choice_is_invalid = False
+    def integer_response_error(message, option_min=0, option_max=0):
+        response_is_invalid = True
+        while response_is_invalid:
+            response = input(message)
+            # vérification si la réponse est un nombre
+            if option_min == 0 and option_max == 0:
+                if response.isdigit():
+                    num_response = int(response)
+                    response_is_invalid = False
+                else:
+                    print("Veuillez renseigner un nombre.")
+            # Vérification si la réponse est un nombre et compris dans un intervalle
+            elif response.isdigit() and (option_min <= (num_response := int(response)) <= option_max):
+                response_is_invalid = False
             else:
-                print("Veuillez choisir une option valide.")
-        return num_choice
-
-    @staticmethod
-    def number_check(message):
-        input_is_not_number = True
-        while input_is_not_number:
-            information = input(message)
-            if information.isdigit():
-                input_is_not_number = False
-            else:
-                print("Veuillez entrer un chiffre?")
-        return int(information)
+                print(f"Veuillez choisir une option valide, comprise entre {option_min} et {option_max}")
+        return num_response
 
     def player_entry(self):
         return {
@@ -85,28 +82,26 @@ class View:
         print("Choix 3  -->  Menu des Rapports")
         print("Choix 0  -->  Quitter le programme")
         message = "Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "
-        return View.menu_choice_error(message, 0, 3)
+        return View.integer_response_error(message, 0, 3)
 
 
     def player_menu(self):
-        while True:
-            print("\n")
-            print(r"\\\\\\\\\\\\\\\\  MENU JOUEURS  ////////////////")
-            print("Choix 1  -->  Liste des joueurs de la base de données")
-            print("Choix 2  -->  Ajouter un nouveau joueur à la base de données")
-            print("Choix 0  -->  Retour au menu principal")
-            message = "Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "
-            return View.menu_choice_error(message, 0, 2)
+        print("\n")
+        print(r"\\\\\\\\\\\\\\\\  MENU JOUEURS  ////////////////")
+        print("Choix 1  -->  Liste des joueurs de la base de données")
+        print("Choix 2  -->  Ajouter un nouveau joueur à la base de données")
+        print("Choix 0  -->  Retour au menu principal")
+        message = "Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "
+        return View.integer_response_error(message, 0, 2)
 
     def tournament_menu(self):
-        while True:
-            print("\n")
-            print(r"\\\\\\\\\\\\\\\\  MENU DU TOURNOI  ////////////////")
-            print("Choix 1  -->  Liste des joueurs participants au tournoi")
-            print("Choix 2  -->  Ajouter un nouveau tournoi")
-            print("Choix 0  -->  Retour au menu principal")
-            message = "Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "
-            return View.menu_choice_error(message, 0, 2)
+        print("\n")
+        print(r"\\\\\\\\\\\\\\\\  MENU DU TOURNOI  ////////////////")
+        print("Choix 1  -->  Liste des joueurs participants au tournoi")
+        print("Choix 2  -->  Ajouter un nouveau tournoi")
+        print("Choix 0  -->  Retour au menu principal")
+        message = "Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "
+        return View.integer_response_error(message, 0, 2)
 
     def new_tournament(self):
         print("\n")
@@ -126,8 +121,8 @@ class View:
             except ValueError:
                 print("Format de date invalide")
         # Vérification round_quantity est un nombre
-        message_round_quatity = "Nombre de rondes (4 par défaut):"
-        round_quantity = View.number_check(message_round_quatity)
+        message_round_quantity = "Nombre de rondes (4 par défaut):"
+        round_quantity = View.number_check(message_round_quantity)
         # Vérfication option valide du format de match
         time_control_choices = ["Bullet (une minute par joueur)",
                                 "Blitz (10 minutes ou moins par joueur)",
@@ -137,7 +132,7 @@ class View:
                                f"Choix 1  -->  {time_control_choices[0]}\n" \
                                f"Choix 2  -->  {time_control_choices[1]}\n" \
                                f"Choix 3  -->  {time_control_choices[2]}\n"
-        time_control_choice = View.menu_choice_error(time_control_message, 1, 3)
+        time_control_choice = View.integer_response_error(time_control_message, 1, 3)
         time_control = f"{time_control_choices[time_control_choice-1]}"
         description = input("Description du tournoi   ")
         return {"name":name,
@@ -165,6 +160,8 @@ class View:
                 else:
                     date_is_invalid = False
             except ValueError:
+
+
                 print("Format de date invalide")
         gender = input("Sexe du joueur (F ou M) :   ")
         ranking = int(input("Classement du joueur :   "))
@@ -172,45 +169,30 @@ class View:
                 "ranking": ranking}
 
     def add_player_menu(self):
-        while True:
-            print("\n")
-            print(r"\\\\\\\\\\\\\\\\  CHOIX DE L'AJOUT DE JOUEUR  ////////////////")
-            print("Choix 1  -->  Créer un nouveau joueur et l'ajouter au tournoi")
-            print("Choix 2  -->  Ajouter un joueur de la base de données au tournoi")
-            choice = input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   ")
-            if not choice.isdigit() or int(choice) < 1 or int(choice) > 2:
-                print("Veuillez choisir une option valide.")
-                continue
-            else:
-                return int(choice)
+        print("\n")
+        print(r"\\\\\\\\\\\\\\\\  CHOIX DE L'AJOUT DE JOUEUR  ////////////////")
+        print("Choix 1  -->  Créer un nouveau joueur et l'ajouter au tournoi")
+        print("Choix 2  -->  Ajouter un joueur de la base de données au tournoi")
+        message = "Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "
+        return View.integer_response_error(message, 1, 2)
 
     def report_menu(self):
-        while True:
-            print("\n")
-            print(r"\\\\\\\\\\\\\\\\  MENU DES RAPPORTS  ////////////////")
-            print("Choix 1  -->  Affichage liste des joueurs")
-            print("Choix 2  -->  Affichage de tous les tournois")
-            print("Choix 0  -->  Retour au menu principal")
-            choice = input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   ")
-            if not choice.isdigit() or int(choice) < 0 or int(choice) > 2:
-                print("Veuillez choisir une option valide.")
-                continue
-            else:
-                return int(choice)
+        print("\n")
+        print(r"\\\\\\\\\\\\\\\\  MENU DES RAPPORTS  ////////////////")
+        print("Choix 1  -->  Affichage liste des joueurs")
+        print("Choix 2  -->  Affichage de tous les tournois")
+        print("Choix 0  -->  Retour au menu principal")
+        message = "Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "
+        return View.integer_response_error(message, 0, 2)
 
     def player_listing_menu(self):
-        while True:
-            print("\n")
-            print(r"\\\\\\\\\\\\\\\\  AFFICHAGE DES JOUEURS DE LA BASE DE DONNEES  ////////////////")
-            print("Choix 1  -->  Lister les joueurs par ordre alphabétique")
-            print("Choix 2  -->  Lister les joueurs par classement elo")
-            print("Choix 0  -->  Retour au menu principal")
-            choice = input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   ")
-            if not choice.isdigit() or int(choice) < 0 or int(choice) > 2:
-                print("Veuillez choisir une option valide.")
-                continue
-            else:
-                return int(choice)
+        print("\n")
+        print(r"\\\\\\\\\\\\\\\\  AFFICHAGE DES JOUEURS DE LA BASE DE DONNEES  ////////////////")
+        print("Choix 1  -->  Lister les joueurs par ordre alphabétique")
+        print("Choix 2  -->  Lister les joueurs par classement elo")
+        print("Choix 0  -->  Retour au menu principal")
+        message = "Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "
+        return View.integer_response_error(message, 0, 2)
 
     def tournament_listing_menu(self):
         print("\n")
@@ -219,16 +201,11 @@ class View:
 
 
     def match_menu(self, joueur1_civility, joueur2_civility):
-        while True:
-            print("\n")
-            print(r"\\\\\\\\\\\\\\\\  RESULTAT DU MATCH  ////////////////")
-            print(f"Veuillez indiquer le résultat du match:  {joueur1_civility}  VS {joueur2_civility}")
-            print(f"Choix 1  -->  Le joueur {joueur1_civility} est vainqueur")
-            print(f"Choix 2  -->  Le joueur {joueur2_civility} est vainqueur")
-            print("Choix 3  -->  C'est un match nul")
-            choice = input("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   ")
-            if not choice.isdigit() or int(choice) < 1 or int(choice) > 3:
-                print("Veuillez choisir une option valide.")
-                continue
-            else:
-                return int(choice)
+        print("\n")
+        print(r"\\\\\\\\\\\\\\\\  RESULTAT DU MATCH  ////////////////")
+        print(f"Veuillez indiquer le résultat du match:  {joueur1_civility}  VS {joueur2_civility}")
+        print(f"Choix 1  -->  Le joueur {joueur1_civility} est vainqueur")
+        print(f"Choix 2  -->  Le joueur {joueur2_civility} est vainqueur")
+        print("Choix 3  -->  C'est un match nul")
+        message = "Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "
+        return View.integer_response_error(message, 1, 3)
