@@ -33,14 +33,14 @@ class View:
                 print(f"Veuillez choisir une option valide, comprise entre {option_min} et {option_max}")
         return num_response
 
-    def player_entry(self):
-        return {
-            "nom": input("Nom de famille: "),
-            "prenom": input("Prénom: "),
-            "date_naissance": input("Date de naissance: "),
-            "sexe": input("Sexe: "),
-            "classement": int(input("classement: ")),
-        }
+    # def player_entry(self):
+    #     return {
+    #         "nom": input("Nom de famille: "),
+    #         "prenom": input("Prénom: "),
+    #         "date_naissance": input("Date de naissance: "),
+    #         "sexe": input("Sexe: "),
+    #         "classement": int(input("classement: ")),
+    #     }
 
 
     #def tournament_entry(self):
@@ -122,7 +122,9 @@ class View:
                 print("Format de date invalide")
         # Vérification round_quantity est un nombre
         message_round_quantity = "Nombre de rondes (4 par défaut):"
-        round_quantity = View.number_check(message_round_quantity)
+        round_quantity = View.integer_response_error(message_round_quantity, 1, 1000
+
+                                                     )
         # Vérfication option valide du format de match
         time_control_choices = ["Bullet (une minute par joueur)",
                                 "Blitz (10 minutes ou moins par joueur)",
@@ -148,20 +150,17 @@ class View:
         print(r"\\\\\\\\\\\\\\\\  CREATION D'UN NOUVEAU JOUEUR  ////////////////")
         first_name = input("Prénom du joueur:   ") # string
         last_name = input("Nom de famille du joueur:   ") # string
-        birthday_date = input("Date de naissance du joueur (au format jj/mm/aaaa) :   ")
-        # Gestion format date:
+        # Gestion format date de naissance:
         date_is_invalid = True
         while date_is_invalid:
-            date_str = input("Date de naissance du joueur (au format jj/mm/aaaa) :   ")
+            birthday_date = input("Date de naissance du joueur (au format jj/mm/aaaa) :   ")
             try:
-                date = datetime.strptime(date_str, "%d/%m/%Y")
+                date = datetime.strptime(birthday_date, "%d/%m/%Y")
                 if date > datetime.now():
                     print("Vous avez entré une date dans le futur, ce qui est impossible")
                 else:
                     date_is_invalid = False
             except ValueError:
-
-
                 print("Format de date invalide")
         gender = input("Sexe du joueur (F ou M) :   ")
         ranking = int(input("Classement du joueur :   "))
@@ -209,3 +208,9 @@ class View:
         print("Choix 3  -->  C'est un match nul")
         message = "Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.   "
         return View.integer_response_error(message, 1, 3)
+
+
+    def final_result(self,view_play_list):
+        print("Le classement final du tournoi est")
+        for (index, player) in enumerate(view_play_list):
+            print(f"{index+1}. {player['civility']} : {player['score']:.1f} pts")
