@@ -19,6 +19,15 @@ class Tournament:
         self.description = description
         self.matches_history = {}
 
+    def __str__(self):
+        return f"Id du tournoi: {self.id}\n" \
+               f"Nom du tournoi: {self.name}\n" \
+               f"Lieu du tournoi: {self.location}\n" \
+               f"Date du tournoi: {self.date.strftime('%d/%m/%Y')}\n" \
+               f"Nombre de rounds: {self.round_quantity}\n" \
+               f"Format de match: {self.time_control}\n" \
+               f"Description du tournoi: {self.description}\n"
+
     def add_round(self):
         # création de la prochaine ronde
         self.round_count += 1
@@ -48,5 +57,6 @@ class Tournament:
                "round_quantity": self.round_quantity,
                "player_list": [player.id for player in self.player_list],
                "description": self.description,
-               "matches_history": {}
+               "matches_history": {player.id: [player.id for player in opponents_list]
+                                   for (player, opponents_list) in self.matches_history.items()}
                }
