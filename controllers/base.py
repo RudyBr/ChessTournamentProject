@@ -61,8 +61,6 @@ class Controller:
             player_id = players_table.insert(player.serialize())
             player.id = player_id
 
-            player.score = 2
-            players_table.update(player.serialize(), doc_ids=[player_id])
             self.current_tournament.player_list.append(player)
             self.current_tournament.matches_history[player] = []
         elif option == 2:  # Ajouter un joueur de la base de données au tournoi
@@ -100,7 +98,8 @@ class Controller:
                 tournament_id = tournament_table.insert(self.current_tournament.serialize())
                 self.current_tournament.id = tournament_id
 
-                print(self.current_tournament)
+                affichage_tournoi = str(self.current_tournament)
+                print(affichage_tournoi)
 
                 self.current_tournament.player_list = []
                 while len(self.current_tournament.player_list) < 8:
@@ -115,14 +114,10 @@ class Controller:
                     # la ronde est terminée >  renseigner date de fin de la ronde
 
                 ordered_player_list = self.current_tournament.get_ordered_player_list()
-                pprint(ordered_player_list)
                 view_play_list = [{"civility": player.first_name + ' ' + player.last_name,
                                    "score": player.score}
                                   for player in ordered_player_list]
-                pprint(view_play_list)
-                """final_ranking = 
-                print(f"Le classement final du tournoi est:")
-                pprint()"""
+                self.view.final_result(view_play_list)
 
             elif option == 0:  # Retour au menu principal
                 break
@@ -138,17 +133,24 @@ class Controller:
             if option == 1:  # Le joueur 1 est vainqueur
                 entree_valide = True
                 match.joueur1.score += 1
+                match.result = 1
             elif option == 2:  # Le joueur 2 est vainqueur
                 entree_valide = True
                 match.joueur2.score += 1
+                match.result = 2
             elif option == 3:  # Match nul
                 entree_valide = True
                 match.joueur1.score += 0.5
                 match.joueur2.score += 0.5
+                match.result = 0
             else:
                 print("Ce n'est pas un choix valide.")
                 print("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.")
         print(f"Résultat du match : {option}")
+        db = TinyDB('db.json', indent=4)
+        players_table = db.table("players")
+        players_table.update(match.joueur1.serialize(), doc_ids=[match.joueur1.id])
+        players_table.update(match.joueur2.serialize(), doc_ids=[match.joueur2.id])
         return option
 
     def report_module(self):
