@@ -97,6 +97,7 @@ class Controller:
 
                 tournament_id = tournament_table.insert(self.current_tournament.serialize())
                 self.current_tournament.id = tournament_id
+                tournament_table.update(self.current_tournament.serialize(), doc_ids=[self.current_tournament.id])
 
                 affichage_tournoi = str(self.current_tournament)
                 print(affichage_tournoi)
@@ -104,13 +105,21 @@ class Controller:
                 self.current_tournament.player_list = []
                 while len(self.current_tournament.player_list) < 8:
                     self.add_player_module()
+                tournament_table.update(self.current_tournament.serialize(), doc_ids=[tournament_id])
 
                 # le tournoi peut démarrer
                 while self.current_tournament.round_count < self.current_tournament.round_quantity:
                     self.current_tournament.add_round()
-                    for match in self.current_tournament.current_round.match_list:
+                    db = TinyDB('db.json', indent=4)
+                    rounds_table = db.table("rounds")
+                    _round = self.current_tournament.current_round
+                    round_id = rounds_table.insert(_round.serialize())
+                    _round.id = round_id
+                    rounds_table.update(_round.serialize(), doc_ids=[_round.id])
+                    for match in _round.match_list:
                         # demander le résultat du match
                         self.match_module(match)
+                        tournament_table.update(self.current_tournament.serialize(), doc_ids=[tournament_id])
                     # la ronde est terminée >  renseigner date de fin de la ronde
 
                 ordered_player_list = self.current_tournament.get_ordered_player_list()
@@ -151,6 +160,10 @@ class Controller:
         players_table = db.table("players")
         players_table.update(match.joueur1.serialize(), doc_ids=[match.joueur1.id])
         players_table.update(match.joueur2.serialize(), doc_ids=[match.joueur2.id])
+        matches_table = db.table("matches")
+        match_id = matches_table.insert(match.serialize())
+        match.id = match_id
+        matches_table.update(match.serialize(), doc_ids=[match.id])
         return option
 
     def report_module(self):
