@@ -60,6 +60,7 @@ class Controller:
 
         player_id = players_table.insert(player.serialize())
         player.id = player_id
+        players_table.update(player.serialize(), doc_ids=[player.id])
 
     def add_player_module(self):
         option = self.view.add_player_menu()
