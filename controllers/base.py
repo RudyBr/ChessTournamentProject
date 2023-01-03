@@ -39,12 +39,27 @@ class Controller:
                     player_count += 1
                 pass
             elif option == 2:  # ajouter joueur à la DB
-                pass
+                self.add_db_player_module()
             elif option == 0:  # retour au menu principal
                 self.view.main_menu()
             else:
                 print("Ce n'est pas un choix valide.")
                 print("Tapez le numéro correspondant à votre choix, puis appuyez sur la touche Entrée.")
+
+    def add_db_player_module(self):
+        data = self.view.new_player()
+        player = models.player.Player(
+            data["first_name"],
+            data["last_name"],
+            data["birthday_date"],
+            data["gender"],
+            data["ranking"])
+
+        db = TinyDB('db.json', indent=4)
+        players_table = db.table("players")
+
+        player_id = players_table.insert(player.serialize())
+        player.id = player_id
 
     def add_player_module(self):
         option = self.view.add_player_menu()
@@ -74,7 +89,6 @@ class Controller:
             self.current_tournament.player_list.append(player)
             self.current_tournament.matches_history[player] = []
         elif option == 2:  # Ajouter un joueur de la base de données au tournoi
-
             pass
         elif option == 0:  # Retour au menu principal
             return
