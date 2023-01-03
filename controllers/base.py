@@ -27,6 +27,16 @@ class Controller:
         while True:
             option = self.view.player_menu()
             if option == 1:  # lister joueurs de la DB
+                db = TinyDB('db.json', indent=4)
+                players_list = db.table("players")
+                player_count = 1
+                for user in players_list:
+                    print(f"{player_count}. Prénom: {user['first_name']}, "
+                          f"Nom: {user['last_name']}, "
+                          f"Date de naissance: {user['birth_date']}, "
+                          f"Sexe: {user['gender']}, "
+                          f"Classement Elo: {user['ranking']}")
+                    player_count += 1
                 pass
             elif option == 2:  # ajouter joueur à la DB
                 pass
@@ -170,6 +180,7 @@ class Controller:
         option = self.view.report_menu()
         while True:
             if option == 1:
+
                 pass
             elif option == 2:
                 pass
